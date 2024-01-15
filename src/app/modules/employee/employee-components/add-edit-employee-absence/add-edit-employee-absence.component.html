@@ -1,0 +1,56 @@
+<div mat-dialog-title>
+    <h1>Apply Absence Form</h1>
+</div>
+
+<form [formGroup]="absenceForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+
+        <!-- Reason Field -->
+        <div class="row">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Reason</mat-label>
+                <input matInput type="text" placeholder="Enter reason" formControlName="rais_abs">
+            </mat-form-field>
+        </div>
+
+        <!-- Horaire Field -->
+        <div class="row">
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Schedule</mat-label>
+                <mat-select placeholder="Select Schedule" formControlName="horaire">
+                    <mat-option *ngFor="let s of horaires" [value]="s.value">
+                        {{ s.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!-- Date Range Fields -->
+        <div class="row">
+            <!-- Absence Date -->
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Absence Date</mat-label>
+                <input matInput [matDatepicker]="startDatePicker" formControlName="date_absence">
+                <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+            </mat-form-field>
+
+            <!-- Nombre Hour -->
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Number of Hours</mat-label>
+                <input matInput type="number" placeholder="Enter period" formControlName="nb_hour" min="1" max="5">
+            </mat-form-field>
+
+        </div>
+
+    </div>
+
+    <!-- Form Actions -->
+    <div mat-dialog-actions class="action">
+        <!-- Cancel Button -->
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+
+        <!-- Submit Button -->
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+    </div>
+</form>

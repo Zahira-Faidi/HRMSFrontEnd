@@ -1,0 +1,23 @@
+<div mat-dialog-title>
+    <h1>Department Form</h1>
+</div>
+<form [formGroup]="deptForm" (ngSubmit)="onSubmit()" class="custom-dialog-form">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Department Name</mat-label>
+                <input matInput type="text" placeholder="Enter Department Name" formControlName="name">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Department Abbreviation</mat-label>
+                <input matInput placeholder="Enter Department Abbreviation" formControlName="abbreviation">
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+    </div>
+</form>

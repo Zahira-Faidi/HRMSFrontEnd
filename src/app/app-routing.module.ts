@@ -1,23 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AutocompleteComponent } from './component/autocomplete/autocomplete.component';
-import { InputComponent } from './input/input.component';
-import { HomeComponent } from './component/home/home.component';
-import { CardComponent } from './component/card/card.component';
-import { SliderComponent } from './component/slider/slider.component';
-import { TableComponent } from './component/table/table.component';
-import { FormdesignComponent } from './component/formdesign/formdesign.component';
-import { AssociateComponent } from './component/associate/associate.component';
+import { LoginComponent } from './auth/login/login.component';
+import { noAuthGuard } from './auth/guards/noAuth-gaurd/no-auth.guard';
+import { HomeComponent } from './home/home.component';
+
 
 const routes: Routes = [
-  {path:'conge',component:HomeComponent},
-  {path:'absence',component:AutocompleteComponent},
-  {path:'input',component:InputComponent},
-  {path:'card',component:CardComponent},
-  {path:'slider',component:SliderComponent},
-  {path:'table',component:TableComponent},
-  {path:'form',component:FormdesignComponent},
-  {path:'associate',component:AssociateComponent}
+  {path:'login',component:LoginComponent, canActivate:[noAuthGuard]},
+  {path:'admin',loadChildren:()=> import("./modules/admin/admin.module").then(m => m.AdminModule)},
+  {path:'employee',loadChildren:()=> import("./modules/employee/employee.module").then(m => m.EmployeeModule)},  
+  {path:'' , component:HomeComponent}
 ];
 
 @NgModule({

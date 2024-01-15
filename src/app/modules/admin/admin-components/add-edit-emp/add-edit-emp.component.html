@@ -1,0 +1,83 @@
+<div mat-dialog-title>
+    <h1>Employee Form</h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" placeholder="Enter first name" formControlName="firstName">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Enter last name" formControlName="lastName">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" placeholder="Enter email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Phone</mat-label>
+                <input matInput type="text" placeholder="Enter phone number" formControlName="phone">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Date of Employment</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="doe">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="Enter password" formControlName="password">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-radio-group aria-label="Select an option" formControlName="gender">
+                <mat-label><b>Gender</b></mat-label>
+                <mat-radio-button value="male">Male</mat-radio-button>
+                <mat-radio-button value="female">Female</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Department</mat-label>
+                <mat-select placeholder="Select department" formControlName="department">
+                    <mat-option *ngFor="let department of departments" [value]="department.value">
+                        {{ department.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Contract Type</mat-label>
+                <mat-select placeholder="Select contract type" formControlName="contractType">
+                    <mat-option *ngFor="let typeContrat of typeContrats" [value]="typeContrat.value">
+                        {{ typeContrat.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Role</mat-label>
+                <mat-select placeholder="Select role" formControlName="role">
+                    <mat-option *ngFor="let role of roles" [value]="role.value">
+                        {{ role.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Salary</mat-label>
+                <input matInput placeholder="Enter salary" type="number" formControlName="salary">
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+    </div>
+</form>
